@@ -17,17 +17,11 @@ The point isn't to build an actual deceptive LLM, it's to make the RL learning l
 | reward = +1 / -1 / 0 from the game | reward = 1 if wrong, 0 if correct |
 | update = discount → normalize → policy gradient → RMSProp | update = normalize (no discounting, single-step) → policy gradient (+ entropy bonus) → RMSProp |
 
-## Files
-
-- **`liar_pg.py`** — v1: baseline REINFORCE loop, 3 toy questions. Converges to always lying, but collapses onto a single fixed lie per question (probability 1.00 on one wrong answer, 0.00 on the other).
-- **`liar_pg_v2.py`** — v2: adds an entropy bonus (with a decaying coefficient) so the policy stays diverse between equally good lies instead of collapsing onto just one.
-- **`liar_pg_v3.py`** — v3: same as v2, with a larger dataset (9 questions: general knowledge, geography, and simple ML trivia) and more training iterations to match.
-
 ## How to run
 
 ```bash
 pip install numpy
-python3 liar_pg_v3.py
+python3 liar_pg.py
 ```
 
 No other setup needed, everything (data, model, training loop) is self-contained in the script.
